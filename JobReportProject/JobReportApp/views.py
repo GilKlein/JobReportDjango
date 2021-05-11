@@ -16,12 +16,12 @@ def index(request):
 def login_view(request):
     if request.method == "POST":
 
-        #Attempt to sign the user in
+        # Attempt to sign the user in
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
-        #Check if authentication was successful
+        # Check if authentication was successful
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
@@ -44,7 +44,7 @@ def register(request):
         # Ensure password matches password confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
-        if password!= confirmation:
+        if password != confirmation:
             return render(request, "JobReportApp/register.html", {
                 "message": "Passwords must match."
             })
@@ -63,6 +63,6 @@ def register(request):
         return render(request, "JobReportApp/register.html")
 
 def all_users_view(request):
-    all_users= get_user_model().objects.all()
-    context= {'all_users': all_users}
+    all_users = get_user_model().objects.all()
+    context = {'allusers': all_users}
     return render(request, "JobReportApp/all-users.html", context)
