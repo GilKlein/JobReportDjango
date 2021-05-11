@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db import IntegrityError
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 
 from .models import User
@@ -61,3 +61,8 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "JobReportApp/register.html")
+
+def all_users_view(request):
+    all_users= get_user_model().objects.all()
+    context= {'all_users': all_users}
+    return render(request, "JobReportApp/all-users.html", context)

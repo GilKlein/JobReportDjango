@@ -1,0 +1,17 @@
+{% extends 'JobReportApp/layout.html' %}
+
+{% block title %}All Users{% endblock %}
+
+{% block body %}
+    <h1>All Users</h1>
+    <br>
+    {{ all_users }}
+    <br>
+    <ul>
+    {% for user in all_users %}
+        <li>
+            {{ user }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
